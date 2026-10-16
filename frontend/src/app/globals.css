@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* الوضع الفاتح */
+:root {
+  --bg: #f3f5f9;
+  --surface: #ffffff;
+  --surface-2: #eef1f6;
+  --border: #dde3ec;
+  --fg: #0f172a;
+  --muted: #5b6678;
+  --primary: #0f8f83;
+  --primary-fg: #ffffff;
+  --primary-soft: #d5f5f0;
+  --danger: #d92d2d;
+  --danger-soft: #fde4e4;
+  --warning: #c27303;
+  --warning-soft: #fdf0d5;
+  --success: #138a43;
+  --success-soft: #dcf5e5;
+  --info: #2563eb;
+  --info-soft: #dfe9fe;
+  --chart-grid: #e3e8f0;
+  color-scheme: light;
+}
+
+/* الوضع الداكن: طابع غرف المراقبة الأمنية */
+.dark {
+  --bg: #070b14;
+  --surface: #0d1422;
+  --surface-2: #141d2f;
+  --border: #1f2a40;
+  --fg: #e6ebf5;
+  --muted: #8b97ae;
+  --primary: #2dd4bf;
+  --primary-fg: #03201c;
+  --primary-soft: rgb(45 212 191 / 0.12);
+  --danger: #f87171;
+  --danger-soft: rgb(248 113 113 / 0.13);
+  --warning: #fbbf24;
+  --warning-soft: rgb(251 191 36 / 0.12);
+  --success: #4ade80;
+  --success-soft: rgb(74 222 128 / 0.12);
+  --info: #60a5fa;
+  --info-soft: rgb(96 165 250 / 0.13);
+  --chart-grid: #182237;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-fg: var(--primary-fg);
+  --color-primary-soft: var(--primary-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-chart-grid: var(--chart-grid);
+  --font-sans: var(--font-plex-arabic), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+/* شريط تمرير هادئ */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+::selection {
+  background: var(--primary-soft);
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, currentColor 45%, transparent); }
+  100% { box-shadow: 0 0 0 8px transparent; }
+}
+
+.live-dot {
+  animation: pulse-ring 1.6s ease-out infinite;
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: none; }
+}
+
+.animate-in {
+  animation: slide-in 0.25s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-dot, .animate-in { animation: none; }
+}
